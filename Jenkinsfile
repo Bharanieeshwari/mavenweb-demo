@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        maven 'maven-3'
+        maven 'maven3.5'
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
 	stage("Sonarqube analysis"){
             steps{
                 script{
-                withSonarQubeEnv(installationName: 'sonarqube-8', credentialsId: 'sonarqube-creds') {
+                withSonarQubeEnv(installationName: 'sonar', credentialsId: 'Jenkins-sonar') {
                       sh 'mvn sonar:sonar'
                   }
                    timeout(5) {
